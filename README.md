@@ -30,9 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Soaen/DevFront-Quizz">
-    Quizz
-  </a>
+
 
 <h3 align="center">Quizz</h3>
 
