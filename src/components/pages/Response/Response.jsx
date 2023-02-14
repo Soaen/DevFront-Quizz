@@ -1,21 +1,26 @@
+import React, {useState, useEffect }   from 'react'
 import { useParams, Link} from "react-router-dom";
-import useState from 'react';
 
 export default function Response(){
     const { id } = useParams();
+    const [nbGoodAnswer, setNbGoodAnswer] = useState(0);
 
     document.title = `Quizz - ${parseInt(id) === 1 ? "Bonne réponse ": "Mauvaise réponse"}`
 
 
+    useEffect(() => {
+        if(parseInt(id) === 1)
+        setNbGoodAnswer(nbGoodAnswer + 1);
+      }, []);
     
-    var {questionDone, setQuestionDone} = useState([]);
 
-
-    console.log(questionDone);
 
     return(
         <div>
-        {parseInt(id) === 1 ? <p>Bonne réponse !</p>: <p>Mauvaise réponse !</p>}
+        
+        {
+        parseInt(id) === 1 ? <p>Bonne réponse !</p>: <p>Mauvaise réponse !</p>
+        }
 
 
             <Link to='/categories'>
