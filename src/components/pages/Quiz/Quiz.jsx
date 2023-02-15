@@ -48,7 +48,7 @@ export default function Home() {
       .then(data => {
         var filteredData = data.filter(item => item.categorie === category); 
         var tempData = filteredData.sort((a, b) => 0.5 - Math.random());
-        filteredData = tempData.slice(0).slice(-10)
+        filteredData = tempData.slice(0).slice(-11)
 
         setQuestions(filteredData);
         setLoading(false);
