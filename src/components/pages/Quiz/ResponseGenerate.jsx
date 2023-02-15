@@ -50,7 +50,7 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
                   key={uuidv4()}
                   onClick={goodClickAnswer}
                 >
-                  good{element}
+                  good {element}
                 </button>
               );
             }
