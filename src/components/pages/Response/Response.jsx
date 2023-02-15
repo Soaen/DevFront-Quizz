@@ -1,19 +1,10 @@
-import React, {useState, useEffect }   from 'react'
+import React   from 'react'
 import { useParams, Link} from "react-router-dom";
 
 export default function Response(){
     const { id } = useParams();
-    const [nbGoodAnswer, setNbGoodAnswer] = useState(0);
 
-    document.title = `Quizz - ${parseInt(id) === 1 ? "Bonne réponse ": "Mauvaise réponse"}`
-
-
-    useEffect(() => {
-        if(parseInt(id) === 1)
-        setNbGoodAnswer(nbGoodAnswer + 1);
-      }, []);
-    
-
+    document.title = `Quizz - ${parseInt(id) === 1 ? "Bonne réponse ": "Mauvaise réponse"}`    
 
     return(
         <div>
