@@ -1,8 +1,11 @@
 import React, { useState, useEffect }  from "react";
-import { useNavigate } from "react-router-dom";
-import './StartQuizz.css';
+import { useNavigate, useParams } from "react-router-dom";
+import './style/StartQuizz.css';
 
 export default function StartQuizz() {
+
+    const {id} = useParams();
+
   let photo1 = {
     photo: "/Photos/photo1.jpg",
     nom: "photo1"
@@ -30,13 +33,13 @@ export default function StartQuizz() {
         const nextIndex = (prevIndex + 1) % photosToggle.length;
         if (nextIndex === photosToggle.length - 1) {
           clearInterval(timer);
-          navigate("/quizz");
+          navigate(`/quiz/${id}`);
         }
         return nextIndex;
       });
     }, 1200);
     return () => clearInterval(timer);
-  }, [photosToggle.length, navigate]);
+  }, []);
 
   return (
     <div>

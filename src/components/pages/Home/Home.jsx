@@ -1,14 +1,21 @@
-import "./style/Home.css"
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+import './style/Home.css';
 
 export default function Home() {
-  return (
-    <div>
-            <h1>Quizz</h1>
-            <Link to='/categories'>
-            <button className="btn-quizz">Accéder au quizz</button>
-            </Link>
-      </div>
-  )
+
+
+return (
+    <div className='pageAcceuil'>
+        
+        <Link to="./connexion" className='boutonCompte'><i className='fa-solid fa-circle-user'></i></Link>
+
+        <h1>Titre du Quizz</h1>
+        
+        <Link to="./categorie" className='boutonQuizz'>Quizz</Link>
+
+        <Link to="./inscription" className='inscription'>S'inscrire</Link>
+
+    </div>
+)
 }

@@ -18,9 +18,6 @@ export default function Home() {
   // État pour stocker l'index de la question actuelle
   const [nbQuest, setNbQuest] = useState(0);
 
-  // État pour stocker les index des questions précédentes
-  const [previousNbQuests, setPreviousNbQuests] = useState([]);
-
   // Tableau des catégories de questions possibles
   const categories = ['Sport', 'Science', 'Histoire/Geo', 'Littérature'];
 
@@ -48,7 +45,7 @@ export default function Home() {
       .then(data => {
         var filteredData = data.filter(item => item.categorie === category); 
         var tempData = filteredData.sort((a, b) => 0.5 - Math.random());
-        filteredData = tempData.slice(0).slice(-11)
+        filteredData = tempData.slice(0).slice(-12)
 
         setQuestions(filteredData);
         setLoading(false);

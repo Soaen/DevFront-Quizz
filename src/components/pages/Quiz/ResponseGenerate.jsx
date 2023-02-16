@@ -7,6 +7,23 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
   const [sortRdmResult, setSortRdmResult] = useState([]);
   const [nbTotalGoodAnswer, setNbTotalGoodAnswer] = useState(0);
 
+
+  const [counter, setCounter] = React.useState(20);
+
+  // Third Attempts
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+      if(counter <= 0){
+        wrongClickAnswer()
+      }
+    return () => {
+      clearInterval(timer)
+  };
+
+  }, [counter]);
+
+
   useEffect(() => {
     const rdmresult = [
       datas[questionCurrent].reponse2,
@@ -30,16 +47,21 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
   function goodClickAnswer() {
     setNbTotalGoodAnswer(nbTotalGoodAnswer + 1);
     setQuestionCurrent(questionCurrent + 1);
+    setCounter(20)
+
   }
 
   function wrongClickAnswer() {
     setQuestionCurrent(questionCurrent + 1);
+    setCounter(20)
   }
 
   function renderQuestion() {
     const goodAnswer = datas[questionCurrent].reponse1;
     return (
       <div>
+        <div>Temps restant: {counter}</div>
+
         <p className='question'>{datas[questionCurrent].question}</p>
         <div className='btn-container'>
           {sortRdmResult.map((element) => {

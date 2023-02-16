@@ -1,16 +1,12 @@
 import './App.css';
-import Acceuil from './Pages/Acceuil';
+import Acceuil from './components/pages/Home/Home';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Categorie from './Pages/Categorie';
-import Inscription from './Pages/Inscription';
-import Sports from './Pages/Sports';
-import Sciences from './Pages/Sciences';
-import Histoire from './Pages/Histoire';
-import Litterature from './Pages/Litterature';
-import StartQuizz from './Components/StartQuizz';
-import Quizz from './Components/Quizz';
-import Profil from './Pages/Profil';
-import Connexion from './Pages/Connexion';
+import Categorie from './components/pages/Categories/Categories';
+import Inscription from './components/pages/Create/Create';
+import StartQuizz from './components/pages/Quiz/StartQuiz';
+import Quizz from './components/pages/Quiz/Quiz';
+import Profil from './components/pages/User/User';
+import Connexion from './components/pages/Connexion/Connexion';
 
 function App() {
   return (
@@ -21,14 +17,10 @@ function App() {
       <Route path='/' element={<Acceuil/>}/>
       <Route path='/categorie' element={<Categorie/>}/>
       <Route path='/inscription' element={<Inscription/>}/>
-      <Route path='/Sports' element={<Sports/>}/>
-      <Route path='/Sciences' element={<Sciences/>}/>
-      <Route path='/Histoire' element={<Histoire/>}/>
-      <Route path='/Litterature' element={<Litterature/>}/>
-      <Route path='/Components/StartQuizz' element={<StartQuizz/>}/>
-      <Route path='/Components/Quizz' element={<Quizz/>}/>
-      <Route path='/Profil' element={<Profil/>}/>
-      <Route path='/Connexion' element={<Connexion/>}/>
+      <Route path='/startquizz/:id' element={<StartQuizz/>}/>
+      <Route path='/quiz/:id' element={<Quizz/>}/>
+      <Route path='/profil' element={<Profil/>}/>
+      <Route path='/connexion' element={<Connexion/>}/>
     </Routes>
 </Router>
   </div>

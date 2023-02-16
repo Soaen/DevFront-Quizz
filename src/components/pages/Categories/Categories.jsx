@@ -6,8 +6,6 @@ export default function Categories() {
   return (
     <div>
 
-    <h2 className="h2-cate">Catégories</h2>
-
     <CateShow />
 
 
