@@ -1,12 +1,9 @@
-import React from 'react'
-import Accueil from './pages/Quiz/Quiz'
+import React from "react";
 
+export default function Quizz() {
 
-export default function Quizz(){
-
-    return(
-        <div>
-            <Accueil />
-        </div>
+    return (
+        <h1>QUIZZ</h1>
     )
+
 }
