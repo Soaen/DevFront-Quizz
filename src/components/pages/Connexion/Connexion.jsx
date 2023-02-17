@@ -34,20 +34,8 @@ export default function Connexion() {
       {
         navigate("/Profil")
       }
-
+setFormErrors({ server: 'L\'adresse e-mail ou le mot de passe est incorrect.' });
     })
-      .then(response => {
-        if (response.data.length > 0) {
-          // Si l'utilisateur existe, rediriger vers la page de profil
-          navigate("/profil");
-        } else {
-          // Sinon, afficher un message d'erreur
-          setFormErrors({ server: 'L\'adresse e-mail ou le mot de passe est incorrect.' });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
 
     // Faire quelque chose avec les données

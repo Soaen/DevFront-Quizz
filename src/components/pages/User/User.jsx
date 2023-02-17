@@ -29,9 +29,10 @@ function Profil() {
       </div>
       <Modal
         closeTimeoutMS={500}
-        isOpen={modalOpen}
+        isOpen={modalOpen ? true : false}
         onRequestClose={() => setModalOpen(false)}
         style={customStyles}
+        ariaHideApp={false}
         
       >
         <div className="modal">
