@@ -86,3 +86,19 @@ p {
 .score {
     border-bottom: solid 1px white ;
 }
+
+
+
+.ReactModal__Overlay {
+    transform: translate(-100%, 0%);
+    transition: all 0.5s ease-in-out;
+
+}
+
+.ReactModal__Overlay--after-open{
+    transform: translate(0%, 0%);
+}
+
+.ReactModal__Overlay--before-close{
+    transform: translate(-100%, 0%);
+}
