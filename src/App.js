@@ -7,6 +7,7 @@ import StartQuizz from './components/pages/Quiz/StartQuiz';
 import Quizz from './components/pages/Quiz/Quiz';
 import Profil from './components/pages/User/User';
 import Connexion from './components/pages/Connexion/Connexion';
+import Compte from './components/pages/Account/Account';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path='/quiz/:id' element={<Quizz/>}/>
       <Route path='/profil' element={<Profil/>}/>
       <Route path='/connexion' element={<Connexion/>}/>
+      <Route path='/compte' element={<Compte/>}/>
     </Routes>
 </Router>
   </div>
