@@ -49,7 +49,7 @@ export default function Connexion() {
       .then(response => {
         if (response.data.length > 0) {
           // Si l'utilisateur existe, rediriger vers la page de profil
-          navigate("/Profil");
+          navigate("/profil");
         } else {
           // Sinon, afficher un message d'erreur
           setFormErrors({ server: 'L\'adresse e-mail ou le mot de passe est incorrect.' });

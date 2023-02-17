@@ -11,7 +11,6 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "white",
     width: 400,
   },
 };
@@ -29,6 +28,7 @@ function Profil() {
       <a className="modalBouton" onClick={setModalOpen}>Consulter mon historique</a>
       </div>
       <Modal
+        closeTimeoutMS={500}
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         style={customStyles}
