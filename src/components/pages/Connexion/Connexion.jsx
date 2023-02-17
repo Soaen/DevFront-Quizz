@@ -10,6 +10,8 @@ export default function Connexion() {
     password: '',
   });
 
+  
+
   const navigate = useNavigate();
 
   const [formErrors, setFormErrors] = useState({});
@@ -19,45 +21,22 @@ export default function Connexion() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Vérifier que les champs sont remplis correctement
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.*\d).{8,}$/;
-    const errors = {};
-    if (!emailRegex.test(formData.email)) {
-      errors.email = 'Veuillez entrer une adresse e-mail valide.';
-    }
-    if (!passwordRegex.test(formData.password)) {
-      errors.password = 'Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre et un chiffre.';
-    }
-    setFormErrors(errors);
-
-    // Si des erreurs sont détectées, ne pas envoyer le formulaire
-    if (Object.keys(errors).length > 0) {
-      return;
-    }
-
-    // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
-    // axios.post("http://localhost:8000/api/users", {
-    //   params: {
-    //     email: formData.email,
-    //     password: formData.password,
-    //   }
-    // })
-    //   .then(response => {
-        // if (response.data.length > 0) {
-          // Si l'utilisateur existe, rediriger vers la page de profil
-          navigate("/Profil");
-        // } else {
-        //   // Sinon, afficher un message d'erreur
-        //   setFormErrors({ server: 'L\'adresse e-mail ou le mot de passe est incorrect.' });
-        // }
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // });
+  // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
+  
+    let response = await axios("http://localhost:8000/api/users");
+    let users= response.data;
+   
+    users.forEach(users => { 
+      if (users.email === formData.email && users.password === formData.password) 
+      {
+        navigate("/Profil")
+      }
+        setFormErrors({ server: 'L\'adresse e-mail ou le mot de passe est incorrect.' });
+        console.log("pas de connexion")
+    });
 
     // Faire quelque chose avec les données
     console.log(formData);
@@ -71,6 +50,7 @@ export default function Connexion() {
         <label htmlFor="email">Email :</label>
         <input
           className={formErrors.email ? 'saisie error' : 'saisie'}
+          type="email"
           placeholder="ex: email@gmail.com"
           name="email"
           value={formData.email}
