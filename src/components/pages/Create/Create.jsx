@@ -24,7 +24,7 @@ export default function Form() {
 
     // Vérifier que les champs sont remplis correctement
     const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.[A-Z])(?=.[a-z])(?=.*\d).{8,}$/;
     const errors = {};
     if (!formData.name) {
       errors.name = 'Veuillez entrer un pseudo.';
@@ -101,7 +101,7 @@ export default function Form() {
       <label htmlFor="confirmPassword">Confirmer le mot de passe :</label>
       <input
         className={formData.confirmPassword ? 'saisie error' : 'saisie'}
-        type="confirmPassword"
+        type="Password"
         name="confirmPassword"
         onChange={handleInputChange}
         required
