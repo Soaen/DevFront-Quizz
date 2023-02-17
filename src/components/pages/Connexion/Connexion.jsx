@@ -10,6 +10,8 @@ export default function Connexion() {
     password: '',
   });
 
+  
+
   const navigate = useNavigate();
 
   const [formErrors, setFormErrors] = useState({});
@@ -19,32 +21,20 @@ export default function Connexion() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Vérifier que les champs sont remplis correctement
-    const emailVerif = formData.email;
-    const passwordVerif = formData.password;
-    const errors = {};
-    if (!emailVerif.test(formData.email)) {
-      errors.email = 'Veuillez entrer une adresse e-mail valide.';
-    }
-    if (!passwordVerif.test(formData.password)) {
-      errors.password = 'Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre et un chiffre.';
-    }
-    setFormErrors(errors);
-
-    // Si des erreurs sont détectées, ne pas envoyer le formulaire
-    if (Object.keys(errors).length > 0) {
-      return;
-    }
-
-    // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
-    axios.get("http://localhost:8000/api/users", {
-      params: {
-        email: formData.email,
-        password: formData.password,
+  // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
+  
+    let response = await axios("http://localhost:8000/api/users");
+    let users= response.data;
+   
+    users.forEach(users => { 
+      if (users.email === formData.email && users.password === formData.password) 
+      {
+        navigate("/Profil")
       }
+
     })
       .then(response => {
         if (response.data.length > 0) {
@@ -59,6 +49,7 @@ export default function Connexion() {
         console.log(error);
       });
 
+
     // Faire quelque chose avec les données
     console.log(formData);
   };
@@ -71,6 +62,7 @@ export default function Connexion() {
         <label htmlFor="email">Email :</label>
         <input
           className={formErrors.email ? 'saisie error' : 'saisie'}
+          type="email"
           placeholder="ex: email@gmail.com"
           name="email"
           value={formData.email}

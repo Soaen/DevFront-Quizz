@@ -10,7 +10,7 @@ return (
         
         <Link to="./connexion" className='boutonCompte'><i className='fa-solid fa-circle-user'></i></Link>
 
-        <h1>Titre du Quizz</h1>
+        <h1 className="titreQuizz">Titre du Quizz</h1>
         
         <Link to="./categorie" className='boutonQuizz'>Quizz</Link>
 

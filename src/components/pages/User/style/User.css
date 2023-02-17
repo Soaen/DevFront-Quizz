@@ -20,7 +20,8 @@
     border-radius: 50px;
 }
 
-h1 { 
+.titreCompte { 
+    color:rgb(32, 149, 216);
     margin-top: 150px;
     margin-bottom: 100px;
     text-align: center;

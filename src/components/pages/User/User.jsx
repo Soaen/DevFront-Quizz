@@ -20,7 +20,7 @@ function Profil() {
 
   return (
     <div className="Profil">
-        <h1>Gestion du compte</h1>
+        <h1 className="titreCompte">Gestion du compte</h1>
         <div>
         <div className="titreProfil">
         <Link to = '/Compte'  className="compteModif">Modifier mes informations</Link>

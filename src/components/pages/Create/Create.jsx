@@ -23,17 +23,14 @@ export default function Form() {
     event.preventDefault();
 
     // Vérifier que les champs sont remplis correctement
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    
+    const passwordRegex = /^(?=.*\d)(?=.*[\W_])[a-zA-Z0-9\W_]{5,}$/;
     const errors = {};
     if (!formData.name) {
       errors.name = 'Veuillez entrer un pseudo.';
     }
-    if (!emailRegex.test(formData.email)) {
-      errors.email = 'Veuillez entrer une adresse e-mail valide.';
-    }
     if (!passwordRegex.test(formData.password)) {
-      errors.password = 'Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre et un chiffre.';
+      errors.password = 'Le mot de passe doit contenir au moins 5 caractères, dont au moins un chiffre et un caractere spécial.';
     }
     if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = 'Les mots de passe ne correspondent pas.';
@@ -101,7 +98,7 @@ export default function Form() {
       <label htmlFor="confirmPassword">Confirmer le mot de passe :</label>
       <input
         className={formData.confirmPassword ? 'saisie error' : 'saisie'}
-        type="confirmPassword"
+        type="Password"
         name="confirmPassword"
         onChange={handleInputChange}
         required
