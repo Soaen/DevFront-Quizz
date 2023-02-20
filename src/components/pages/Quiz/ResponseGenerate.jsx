@@ -23,7 +23,7 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
 
   }, [counter]);
 
-
+  
   useEffect(() => {
     const rdmresult = [
       datas[questionCurrent].reponse2,
@@ -60,9 +60,10 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
     const goodAnswer = datas[questionCurrent].reponse1;
     return (
       <div>
-        <div>Temps restant: {counter}</div>
-
+        <div className='chrono'>Temps restant: {counter}</div>
+        <div className='cadreQuestion'>
         <p className='question'>{datas[questionCurrent].question}</p>
+        </div>
         <div className='btn-container'>
           {sortRdmResult.map((element) => {
             if (element === goodAnswer) {
@@ -72,7 +73,7 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
                   key={uuidv4()}
                   onClick={goodClickAnswer}
                 >
-                  good {element}
+                 {element}
                 </button>
               );
             }
@@ -92,9 +93,15 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
   }
 
   function renderEnd() {
+    // axios.post("http://localhost:8000/api/parties", {
+    //   score: nbTotalGoodAnswer,
+    //   })
+    //   .then(response => {
+    //     console.log(response)
+    //   })
     return (
       <div>
-        <p>
+        <p className='result'>
           Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
         </p>
       </div>
