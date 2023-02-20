@@ -1,0 +1,26 @@
+.changement-type{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.changement-input{
+    margin: auto;
+    display: block;
+    width: 50%;
+}
+
+.container-changement{
+    margin-top: 30%;
+}
+
+.changement-submit{
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.account-profil::before{
+    color: white;
+    font-size: 200px;
+}

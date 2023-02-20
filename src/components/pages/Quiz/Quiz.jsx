@@ -15,9 +15,6 @@ export default function Home() {
   // État pour stocker les questions récupérées depuis l'API
   const [questions, setQuestions] = useState([]);
 
-  // État pour stocker l'index de la question actuelle
-  const [nbQuest, setNbQuest] = useState(0);
-
   // Tableau des catégories de questions possibles
   const categories = ['Sport', 'Science', 'Histoire/Geo', 'Littérature'];
 
@@ -45,28 +42,32 @@ export default function Home() {
       .then(data => {
         var filteredData = data.filter(item => item.categorie === category); 
         var tempData = filteredData.sort((a, b) => 0.5 - Math.random());
-        filteredData = tempData.slice(0).slice(-12)
-
-        setQuestions(filteredData);
+        // filteredData = tempData.slice(0).slice(-12)
+        setQuestions(tempData);
         setLoading(false);
       })
   }, [category]);
 
   
-  if (isLoading) {
-    return (
-      <div>
-        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ht6o1bdu.json" background="transparent" speed="1" loop autoplay></lottie-player>
-        <div id='generated'>Loading...</div>
-      </div>
-    );
-  }
-
+  // if (isLoading) {
+  //   return (
+  //     <div>
+  //       <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ht6o1bdu.json" background="transparent" speed="1" loop autoplay></lottie-player>
+  //       <div id='generated'>Loading...</div>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <div id='generated'>
-      <Response nbQuestion={nbQuest} datas={questions} />
-      {/* <button onClick={rdmNumber}>refresh</button> */}
+    <div>
+      {questions.length > 0 ? (
+        <div id='generated'>
+          <Response datas={questions} />
+        </div>
+      ) : (
+        
+        <div>Loading...</div>
+      )}
     </div>
-  )
+  );
 }
