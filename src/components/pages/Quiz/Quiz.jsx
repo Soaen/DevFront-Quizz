@@ -15,9 +15,6 @@ export default function Home() {
   // État pour stocker les questions récupérées depuis l'API
   const [questions, setQuestions] = useState([]);
 
-  // État pour stocker l'index de la question actuelle
-  const [nbQuest, setNbQuest] = useState(0);
-
   // Tableau des catégories de questions possibles
   const categories = ['Sport', 'Science', 'Histoire/Geo', 'Littérature'];
 
@@ -68,6 +65,7 @@ export default function Home() {
           <Response datas={questions} />
         </div>
       ) : (
+        
         <div>Loading...</div>
       )}
     </div>

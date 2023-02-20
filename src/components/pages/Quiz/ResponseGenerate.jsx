@@ -35,17 +35,17 @@ export default function ResponseGenerate({  datas }) {
 
 
   useEffect(() => {
-    if (!isFinished && counter > 0) {
-      const timer = setInterval(() => setCounter(counter - 1), 1000);
-      return () => clearInterval(timer);
-    } else if (counter <= 0) {
-      wrongClickAnswer();
-    } else if (questionCurrent === 10) {
-      setIsFinished(true);
+    const timer = setInterval(() => {
+      if (!isFinished) {
+      if (counter > 0) {
+        setCounter(counter - 1);
+      } else if (counter === 0) {
+        wrongClickAnswer();
+      }
     }
-  }, [counter, isFinished, questionCurrent]);
-
-  
+    }, 1000);
+    return () => clearInterval(timer);
+  });
 
   function goodClickAnswer() {
     setNbTotalGoodAnswer(nbTotalGoodAnswer + 1);
@@ -78,6 +78,7 @@ export default function ResponseGenerate({  datas }) {
   }
 
   function renderEnd() {
+    if(!isFinished)setIsFinished(true)
     return (
       <div>
         <p>
