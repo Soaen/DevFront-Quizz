@@ -1,5 +1,4 @@
 .App {
-  background-color: darkcyan;
   text-align: center;
 }
 
@@ -42,7 +41,7 @@
     position: fixed;
     top: 5px;
     left: 10px;
-    color: white;
-    font-size: 50px;
+    color: rgb(22, 186, 241);
+    font-size: 60px;
     
 }

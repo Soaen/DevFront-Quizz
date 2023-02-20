@@ -1,5 +1,6 @@
 body {
     background-color:rgb(60, 63, 63);
+   
 }
 
 .titreQuizz { 
@@ -14,16 +15,17 @@ body {
 
 .boutonQuizz {
     font-size: 50px;
-    color: rgb(32, 149, 216);
+    color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px white;
     justify-content: center;
     margin-top: 100px;
-    background-color: white;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(109,221,244,1) 0%, rgba(25,175,221,1) 48%, rgba(32,149,216,1) 100%);
     padding: 10px;
     padding-left: 50px;
     padding-right: 50px;
     text-decoration: none;
+    
 }
 
 .pageAcceuil {
@@ -36,7 +38,7 @@ body {
     position: fixed;
     top: 5px;
     right: 10px;
-    color: white;
+    color: rgb(22, 186, 241);
     font-size: 60px;
 }
 
@@ -46,19 +48,16 @@ body {
     margin-top: 80px;
 }
 
-@media screen and (min-width: 414px ) and (max-width: 591px) {
+.deconnexion {
+    text-decoration: none;
+    color: rgb(32, 149, 216);
+    margin-top: 80px;
+}
+
+@media screen and (min-width: 480px ){
     .boutonQuizz {
         font-size: 60px;
-        color: rgb(32, 149, 216);
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px white;
-        justify-content: center;
-        margin-top: 100px;
-        background-color: white;
-        padding: 10px;
-        padding-left: 50px;
-        padding-right: 50px;
-        text-decoration: none;
+       
     }
 
     .titreQuizz {
@@ -77,11 +76,9 @@ body {
         font-size: 30px;
     }
     .boutonCompte {
-        position: fixed;
-        top: 5px;
-        right: 10px;
-        color: white;
         font-size: 60px;
     }
+
+    
 
 }
