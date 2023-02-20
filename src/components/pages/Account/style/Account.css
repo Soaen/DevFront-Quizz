@@ -10,10 +10,6 @@
     width: 50%;
 }
 
-.container-changement{
-    margin-top: 30%;
-}
-
 .changement-submit{
     display: block;
     margin: auto;
@@ -23,4 +19,12 @@
 .account-profil::before{
     color: white;
     font-size: 200px;
+}
+
+.changement-email, .changement-pswd{
+    padding: 10px;
+    padding-top: 0;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
 }

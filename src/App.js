@@ -11,8 +11,6 @@ import Compte from './components/pages/Account/Account';
 
 function App() {
   return (
-    <>
-    <div></div>
     <div>
 <Router>
 <Link to="./" className='homeIcon'><i className='fa-solid fa-house-chimney'></i></Link>
