@@ -16,7 +16,7 @@ export default function Home() {
   const [questions, setQuestions] = useState([]);
 
   // Tableau des catégories de questions possibles
-  const categories = ['Sport', 'Science', 'Histoire/Geo', 'Littérature'];
+  const categories = ['Sport', 'Science','Littérature','Histoire/Geo'];
 
   // Récupérer la catégorie correspondant à l'ID de l'URL
   const category = categories[id - 1] || '';
