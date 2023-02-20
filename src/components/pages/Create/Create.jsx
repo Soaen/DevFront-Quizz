@@ -61,26 +61,25 @@ export default function Form() {
   
   return (
     
-    <form action="" id="login" method="post" onSubmit={handleSubmit}>
+    <><form action="" id="login" method="post" onSubmit={handleSubmit}>
       <label htmlFor="name">Pseudo :</label>
       <input
         className={formErrors.name ? 'saisie error' : 'saisie'}
         name="name"
         value={formData.name}
         onChange={handleInputChange}
-        required
-      />
+        required />
       {formErrors.name && <span className="error-message">{formErrors.name}</span>}
 
       <label htmlFor="email">Email :</label>
       <input
         className={formErrors.email ? 'saisie error' : 'saisie'}
+        type="email"
         placeholder="ex: email@gmail.com"
         name="email"
         value={formData.email}
         onChange={handleInputChange}
-        required
-      />
+        required />
       {formErrors.email && <span className="error-message">{formErrors.email}</span>}
 
       <label htmlFor="password">Mot de passe :</label>
@@ -90,8 +89,7 @@ export default function Form() {
         name="password"
         value={formData.password}
         onChange={handleInputChange}
-        required
-      />
+        required />
       {formErrors.password && <span className="error-message">{formErrors.password}</span>}
 
 
@@ -101,24 +99,16 @@ export default function Form() {
         type="Password"
         name="confirmPassword"
         onChange={handleInputChange}
-        required
-      />
+        required />
       {formErrors.confirmPassword && <span className="error-message">{formErrors.confirmPassword}</span>}
 
-      <div className='checkbox'>
-        <label className="agree-terms">
-          <input type="checkbox" name="agree-terms" aria-label="agree-terms" required />
-          J'accepte les conditions générales d'utilisations
-        </label>
+      <label className="agree-terms">
+        <input type="checkbox" name="agree-terms" aria-label="agree-terms" required />
+        J'accepte les conditions générales d'utilisations
+      </label>
 
-        {/* <label className="saveConnexion">
-          <input type="checkbox" name="saveConnexion" aria-label="saveConnexion" />
-          Se souvenir de moi
-        </label> */}
-      </div>
-
-      <input className="boutonEnv" type="submit" onSubmit={handleSubmit}/>
+    <input className="boutonEnv" type="submit" onSubmit={handleSubmit} />
       
-    </form>
+    </form></>
   );
 }

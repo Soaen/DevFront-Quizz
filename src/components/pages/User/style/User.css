@@ -12,7 +12,7 @@
 .titreProfil {
     display: flex;
     flex-direction: column;
-    background-color:rgb(32, 149, 216);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(71,143,217,1) 0%, rgba(16,190,244,1) 100%, rgba(32,149,216,1) 100%);
     width: 95%;
     height: 500px;
     align-items: center;

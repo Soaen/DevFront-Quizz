@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style/Home.css';
+import axios from "axios";
 
 export default function Home() {
+  const [isConnected, setIsConnected] = useState(false);
+
+  const storage = window.localStorage;
+
+  useEffect(() => {
+    const isConnected = storage.getItem('isConnected');
+    setIsConnected(!!isConnected);
+    // if (isConnected === true ) {
+    //   setIsConnected(true);
+    // }
+  });
+
+  const handleLogout = () => {
+    storage.removeItem('isConnected');
+    setIsConnected(false);
+  };
 
 
-return (
-    <div className='pageAcceuil'>
+  return (
+    <div className="pageAcceuil">
+      {isConnected ? (
+        <Link to="./profil" className="boutonCompte">
+          <i className="fa-solid fa-user-check"></i>
+        </Link>
+      ) : (
+        <Link to="./connexion" className="boutonCompte">
+          <i className="fa-solid fa-user"></i>
+        </Link>
+      )}
         
-        <Link to="./connexion" className='boutonCompte'><i className='fa-solid fa-circle-user'></i></Link>
+      <h1 className="titreQuizz">Titre du Quizz</h1>
 
-        <h1 className="titreQuizz">Titre du Quizz</h1>
-        
-        <Link to="./categorie" className='boutonQuizz'>Quizz</Link>
+      <Link to="./categorie" className="boutonQuizz">
+        Quizz
+      </Link>
 
-        <Link to="./inscription" className='inscription'>S'inscrire</Link>
-
+      {isConnected ? (
+        <a className="deconnexion" onClick={handleLogout}>
+          Se déconnecter
+        </a>
+      ) : (
+        <Link to="./inscription" className="inscription">
+          S'inscrire
+        </Link>
+      )}
     </div>
-)
+  );
 }
