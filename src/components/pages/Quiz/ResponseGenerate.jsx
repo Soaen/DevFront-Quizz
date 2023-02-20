@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import './style/ResponseGenerate.css';
 
@@ -8,30 +9,31 @@ export default function ResponseGenerate({  datas }) {
   const [nbTotalGoodAnswer, setNbTotalGoodAnswer] = useState(0);
   const [counter, setCounter] = React.useState(20);
   const [isFinished, setIsFinished] = React.useState(false)
+  const [datasQuestion, setDatasQuestion] = useState(datas)
   
   const [showQuestion, setShowQuestion] = useState(false); // add state for showing/hiding question
 
   useEffect(() => {
     const rdmresult = [
-      datas[questionCurrent].reponse2,
-      datas[questionCurrent].reponse3,
-      datas[questionCurrent].reponse4,
-      datas[questionCurrent].reponse5,
-      datas[questionCurrent].reponse6,
-      datas[questionCurrent].reponse7,
-      datas[questionCurrent].reponse8,
-      datas[questionCurrent].reponse9,
-      datas[questionCurrent].reponse10,
+      datasQuestion[questionCurrent].reponse2,
+      datasQuestion[questionCurrent].reponse3,
+      datasQuestion[questionCurrent].reponse4,
+      datasQuestion[questionCurrent].reponse5,
+      datasQuestion[questionCurrent].reponse6,
+      datasQuestion[questionCurrent].reponse7,
+      datasQuestion[questionCurrent].reponse8,
+      datasQuestion[questionCurrent].reponse9,
+      datasQuestion[questionCurrent].reponse10,
     ];
     const newSortRdmResult = rdmresult
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)
-      .concat(datas[questionCurrent].reponse1)
+      .concat(datasQuestion[questionCurrent].reponse1)
       .sort(() => Math.random() - 0.5);
     setSortRdmResult(newSortRdmResult);
     setCounter(20);
     setTimeout(() => setShowQuestion(true), 300);
-  }, [questionCurrent, datas]);
+  }, [questionCurrent, datasQuestion]);
 
 
   useEffect(() => {
@@ -56,12 +58,21 @@ export default function ResponseGenerate({  datas }) {
     setQuestionCurrent(questionCurrent + 1);
   }
 
+  function restartQuiz(){
+    console.log(datasQuestion);
+
+    setDatasQuestion(datasQuestion.sort(() => Math.random() - 0.5))
+    console.log(datasQuestion);
+    setCounter(20)
+    setQuestionCurrent(0)
+  }
+
   function renderQuestion() {
-    const goodAnswer = datas[questionCurrent].reponse1;
+    const goodAnswer = datasQuestion[questionCurrent].reponse1;
     return (
       <div>
         <div>Temps restant: {counter}</div>
-        <p className='question'>{datas[questionCurrent].question}</p>
+        <p className='question'>{datasQuestion[questionCurrent].question}</p>
         <div className='btn-container'>
           {sortRdmResult.map((element) => (
             <button
@@ -84,6 +95,8 @@ export default function ResponseGenerate({  datas }) {
         <p>
           Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
         </p>
+        <button onClick={restartQuiz}>Recommencer</button>
+        <Link to='/categories'>Catégories</Link>
       </div>
     );
   }

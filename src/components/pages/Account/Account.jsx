@@ -88,7 +88,7 @@ export default function Account() {
             <p>Bonjour, {userDatas[userID - 1].name}</p>
             <p>{userDatas[userID - 1].email}</p>
             <p>
-              Mail vérifiée :{" "}
+              Mail vérifié :{" "}
               {userDatas[userID - 1].email_verified_at === null ||
               userDatas[userID - 1].email_verified_at === false
                 ? "Non"
