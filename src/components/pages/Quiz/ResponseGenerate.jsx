@@ -65,6 +65,7 @@ export default function ResponseGenerate({  datas }) {
     console.log(datasQuestion);
     setCounter(20)
     setQuestionCurrent(0)
+    setNbTotalGoodAnswer(0)
   }
 
   function renderQuestion() {
