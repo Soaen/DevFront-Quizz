@@ -2,27 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './style/ResponseGenerate.css';
 
-export default function ResponseGenerate({ nbQuestion, datas }) {
+export default function ResponseGenerate({  datas }) {
   const [questionCurrent, setQuestionCurrent] = useState(0);
   const [sortRdmResult, setSortRdmResult] = useState([]);
   const [nbTotalGoodAnswer, setNbTotalGoodAnswer] = useState(0);
-
-
   const [counter, setCounter] = React.useState(20);
-
-  // Third Attempts
-  React.useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-      if(counter <= 0){
-        wrongClickAnswer()
-      }
-    return () => {
-      clearInterval(timer)
-  };
-
-  }, [counter]);
-
+  const [isFinished, setIsFinished] = React.useState(false)
+  
+  const [showQuestion, setShowQuestion] = useState(false); // add state for showing/hiding question
 
   useEffect(() => {
     const rdmresult = [
@@ -42,18 +29,31 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
       .concat(datas[questionCurrent].reponse1)
       .sort(() => Math.random() - 0.5);
     setSortRdmResult(newSortRdmResult);
+    setCounter(20);
+    setTimeout(() => setShowQuestion(true), 300);
   }, [questionCurrent, datas]);
+
+
+  useEffect(() => {
+    if (!isFinished && counter > 0) {
+      const timer = setInterval(() => setCounter(counter - 1), 1000);
+      return () => clearInterval(timer);
+    } else if (counter <= 0) {
+      wrongClickAnswer();
+    } else if (questionCurrent === 10) {
+      setIsFinished(true);
+    }
+  }, [counter, isFinished, questionCurrent]);
+
+  
 
   function goodClickAnswer() {
     setNbTotalGoodAnswer(nbTotalGoodAnswer + 1);
     setQuestionCurrent(questionCurrent + 1);
-    setCounter(20)
-
   }
 
   function wrongClickAnswer() {
     setQuestionCurrent(questionCurrent + 1);
-    setCounter(20)
   }
 
   function renderQuestion() {
@@ -61,31 +61,17 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
     return (
       <div>
         <div>Temps restant: {counter}</div>
-
         <p className='question'>{datas[questionCurrent].question}</p>
         <div className='btn-container'>
-          {sortRdmResult.map((element) => {
-            if (element === goodAnswer) {
-              return (
-                <button
-                  className='btn-rep'
-                  key={uuidv4()}
-                  onClick={goodClickAnswer}
-                >
-                  good {element}
-                </button>
-              );
-            }
-            return (
-              <button
-                className='btn-rep'
-                key={uuidv4()}
-                onClick={wrongClickAnswer}
-              >
-                {element}
-              </button>
-            );
-          })}
+          {sortRdmResult.map((element) => (
+            <button
+              className='btn-rep'
+              key={uuidv4()}
+              onClick={element === goodAnswer ? goodClickAnswer : wrongClickAnswer}
+            >
+              {element}
+            </button>
+          ))}
         </div>
       </div>
     );
@@ -101,5 +87,5 @@ export default function ResponseGenerate({ nbQuestion, datas }) {
     );
   }
 
-  return questionCurrent < 10 ? renderQuestion() : renderEnd();
+  return showQuestion ? questionCurrent < 10 ? renderQuestion() : renderEnd() : "Loading..."
 }
