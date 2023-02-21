@@ -78,9 +78,11 @@ export default function ResponseGenerate({  datas }) {
   function renderQuestion() {
     const goodAnswer = datasQuestion[questionCurrent].reponse1;
     return (
-      <div className='pageResult'>
-        <div>Temps restant: {counter}</div>
+      <div>
+        <div className='chrono'>Temps restant: {counter}</div>
+        <div className='cadreQuestion'>
         <p className='question'>{datasQuestion[questionCurrent].question}</p>
+        </div>
         <div className='btn-container'>
           {sortRdmResult.map((element) => (
             <button
@@ -115,15 +117,15 @@ export default function ResponseGenerate({  datas }) {
     
 
     return (
-      <div>
-        <p>
+      <div className='pageResult'>
+        <p className='result'>
           Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
         </p>
-        <button onClick={restartQuiz}>Recommencer</button>
-        <Link to='/categories'>Catégories</Link>
+        <button onClick={restartQuiz} className='restart'>Recommencer</button>
+        <Link to='/categories' className='returnCategorie'>Catégories</Link>
       </div>
     );
   }
 
-  return showQuestion ? questionCurrent <= 10 ? renderQuestion() : renderEnd() : "Loading..."
+  return showQuestion ? questionCurrent < 10 ? renderQuestion() : renderEnd() : "Loading..."
 }
