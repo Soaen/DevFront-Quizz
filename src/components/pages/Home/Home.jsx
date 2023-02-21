@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style/Home.css';
-import axios from "axios";
 
 export default function Home() {
   const [isConnected, setIsConnected] = useState(false);
@@ -18,6 +17,7 @@ export default function Home() {
 
   const handleLogout = () => {
     storage.removeItem('isConnected');
+    storage.removeItem('userID');
     setIsConnected(false);
   };
 
