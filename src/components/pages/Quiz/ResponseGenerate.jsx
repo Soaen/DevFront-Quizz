@@ -69,6 +69,7 @@ export default function ResponseGenerate({  datas }) {
     setDatasQuestion(datasQuestion.sort(() => Math.random() - 0.5))
     console.log(datasQuestion);
     setCounter(20)
+    setIsFinished(false)
     setQuestionCurrent(0)
     setNbTotalGoodAnswer(0)
   }
@@ -122,7 +123,7 @@ export default function ResponseGenerate({  datas }) {
           Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
         </p>
         <button onClick={restartQuiz} className='restart'>Recommencer</button>
-        <Link to='/categories' className='returnCategorie'>Catégories</Link>
+        <Link to='/categorie' className='returnCategorie'>Catégories</Link>
       </div>
     );
   }

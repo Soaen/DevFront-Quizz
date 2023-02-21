@@ -20,6 +20,8 @@ function Profil() {
   const [modalOpen, setModalOpen] = useState(false);
   const [datas, setDatas] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const storage = window.localStorage;
+
 
 
   useEffect(() => {
@@ -30,7 +32,9 @@ function Profil() {
       data.forEach(e => {
           if(e.id%2 === 1){
             tempData.push(e)
-            setDatas(tempData)
+            var udpatedTempData = tempData.filter(item => item.idjoueur === parseInt(storage.getItem('userID'))); 
+
+            setDatas(udpatedTempData)
             setLoading(false)
           }
       });
@@ -60,7 +64,6 @@ function Profil() {
               </div>
     )
   }
-  console.log(datas1);
   return (
     <div className="Profil">
         <h1 className="titreCompte">Gestion du compte</h1>
@@ -83,9 +86,7 @@ function Profil() {
             <h2>Dernieres sessions : </h2>
             {typeof datas1 !== 'undefined' ? 
             <div className="score">
-            <h3>{new Date(Date.parse(datas1.created_at)).getDate() + "/"
-            + new Date(Date.parse(datas1.created_at)).getMonth() + "/" 
-            + new Date(Date.parse(datas1.created_at)).getFullYear()} :</h3>
+            <h3>{new Date(datas1.created_at).toLocaleDateString('fr-FR')}</h3>
             {/* <h4>Catégorie</h4> */}
             <p>{datas1.score} points</p>
             </div>
@@ -94,9 +95,7 @@ function Profil() {
           }
             {typeof datas2 !== 'undefined' ? 
               <div className="score">
-            <h3>{new Date(Date.parse(datas2.created_at)).getDate() + "/"
-            + new Date(Date.parse(datas2.created_at)).getMonth() + "/" 
-            + new Date(Date.parse(datas2.created_at)).getFullYear()} :</h3>
+            <h3>{new Date(datas2.created_at).toLocaleDateString('fr-FR')} :</h3>
             {/* <h4>categorie Histoire/Geo</h4> */}
             <p>{datas2.score} points</p>
             </div>
@@ -105,9 +104,7 @@ function Profil() {
             }
             {typeof datas3 !== 'undefined' ? 
             <div>
-            <h3>{new Date(Date.parse(datas3.created_at)).getDate() + "/"
-            + new Date(Date.parse(datas3.created_at)).getMonth() + "/" 
-            + new Date(Date.parse(datas3.created_at)).getFullYear()} :</h3>
+            <h3>{new Date(datas3.created_at).toLocaleDateString('fr-FR')} :</h3>
             {/* <h4>categorie Litterature</h4> */}
             <p>{datas3.score} points</p>
             </div>
