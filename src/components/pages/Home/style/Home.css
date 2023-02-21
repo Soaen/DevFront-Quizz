@@ -1,16 +1,11 @@
 body {
-    background-color:rgb(60, 63, 63);
-   
+    background-color: #3c3f3f;
+
 }
 
-.titreQuizz { 
-    color: rgb(32, 149, 216);
+.cultureQuizz {
     margin-top: 200px;
-    margin-bottom: 100px;
-    text-align: center;
-    font-size: 45px;
-    text-shadow: 1px 1px 5px black;
-    
+    width: 60%;
 }
 
 .boutonQuizz {
@@ -20,12 +15,15 @@ body {
     box-shadow: 0px 0px 10px white;
     justify-content: center;
     margin-top: 100px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(109,221,244,1) 0%, rgba(25,175,221,1) 48%, rgba(32,149,216,1) 100%);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, #6dddf4 0%, rgba(25, 175, 221, 1) 48%, #2095d8 100%);
     padding: 10px;
     padding-left: 50px;
     padding-right: 50px;
     text-decoration: none;
-    
+}
+
+.boutonQuizz:hover {
+    border: 2px solid white;
 }
 
 .pageAcceuil {
@@ -42,43 +40,44 @@ body {
     font-size: 60px;
 }
 
+.boutonCompte:hover {
+    font-size: 70px;
+    color: rgb(125, 205, 252);
+}
+
 .inscription {
     text-decoration: none;
     color: rgb(32, 149, 216);
     margin-top: 80px;
+    font-size: 30px;
+}
+
+.inscription:hover, .deconnexion:hover {
+    font-size: 35px;
+    color: rgb(125, 205, 252);
 }
 
 .deconnexion {
     text-decoration: none;
     color: rgb(32, 149, 216);
     margin-top: 80px;
+    font-size: 30px;
 }
 
-@media screen and (min-width: 480px ){
+@media screen and (min-width: 480px) {
     .boutonQuizz {
         font-size: 60px;
-       
     }
 
     .titreQuizz {
-        color: rgb(32, 149, 216);
-        margin-top: 200px;
-        margin-bottom: 100px;
-        text-align: center;
         font-size: 60px;
-        text-shadow: 1px 1px 5px black;
     }
 
     .inscription {
-        text-decoration: none;
-        color: rgb(32, 149, 216);
-        margin-top: 80px;
         font-size: 30px;
     }
+
     .boutonCompte {
         font-size: 60px;
     }
-
-    
-
 }

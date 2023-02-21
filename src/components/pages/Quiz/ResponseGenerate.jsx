@@ -78,7 +78,7 @@ export default function ResponseGenerate({  datas }) {
   function renderQuestion() {
     const goodAnswer = datasQuestion[questionCurrent].reponse1;
     return (
-      <div>
+      <div className='pageResult'>
         <div>Temps restant: {counter}</div>
         <p className='question'>{datasQuestion[questionCurrent].question}</p>
         <div className='btn-container'>
