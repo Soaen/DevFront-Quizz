@@ -13,6 +13,10 @@
     margin-right: 30px;
 }
 
+.boutonCategorie:hover {
+    border: 2px solid white;
+}
+
 .navCategorie {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,30 @@
+.changement-type{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.changement-input{
+    margin: auto;
+    display: block;
+    width: 50%;
+}
+
+.changement-submit{
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.account-profil::before{
+    color: white;
+    font-size: 200px;
+}
+
+.changement-email, .changement-pswd{
+    padding: 10px;
+    padding-top: 0;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+}

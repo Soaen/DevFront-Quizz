@@ -1,23 +1,34 @@
 .connexion {
-    color:white;
+    color:black;
     text-align: center;
-    width: 150px;
+    font-size: 20px;
+    width: 170px;
+    height: 60px;
     margin: auto;
+    margin-top: 30px;
     border-radius: 25px;
     box-shadow: 0px 0px 10px white;
     padding: 10px;
+    border: 0;
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(109,221,244,1) 0%, rgba(25,175,221,1) 48%, rgba(32,149,216,1) 100%);
+}
+
+.connexion:hover {
+    border: 2px solid white;
+    width: 180px;
+    height: 70px;
 }
 
 .saveConnexion {
     margin-top: 30px;
 }
 form {
-    margin-top: 130px;
+    margin-top: 90px;
 }
 
 label {
     font-size: 40px;
+    margin-top: 50px;
 }
 
 .error-message {

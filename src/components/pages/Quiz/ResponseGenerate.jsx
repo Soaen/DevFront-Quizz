@@ -1,112 +1,108 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import './style/ResponseGenerate.css';
 
-export default function ResponseGenerate({ nbQuestion, datas }) {
+export default function ResponseGenerate({  datas }) {
   const [questionCurrent, setQuestionCurrent] = useState(0);
   const [sortRdmResult, setSortRdmResult] = useState([]);
   const [nbTotalGoodAnswer, setNbTotalGoodAnswer] = useState(0);
-
-
   const [counter, setCounter] = React.useState(20);
-
-  // Third Attempts
-  React.useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-      if(counter <= 0){
-        wrongClickAnswer()
-      }
-    return () => {
-      clearInterval(timer)
-  };
-
-  }, [counter]);
-
+  const [isFinished, setIsFinished] = React.useState(false)
+  const [datasQuestion, setDatasQuestion] = useState(datas)
   
+  const [showQuestion, setShowQuestion] = useState(false); // add state for showing/hiding question
+
   useEffect(() => {
     const rdmresult = [
-      datas[questionCurrent].reponse2,
-      datas[questionCurrent].reponse3,
-      datas[questionCurrent].reponse4,
-      datas[questionCurrent].reponse5,
-      datas[questionCurrent].reponse6,
-      datas[questionCurrent].reponse7,
-      datas[questionCurrent].reponse8,
-      datas[questionCurrent].reponse9,
-      datas[questionCurrent].reponse10,
+      datasQuestion[questionCurrent].reponse2,
+      datasQuestion[questionCurrent].reponse3,
+      datasQuestion[questionCurrent].reponse4,
+      datasQuestion[questionCurrent].reponse5,
+      datasQuestion[questionCurrent].reponse6,
+      datasQuestion[questionCurrent].reponse7,
+      datasQuestion[questionCurrent].reponse8,
+      datasQuestion[questionCurrent].reponse9,
+      datasQuestion[questionCurrent].reponse10,
     ];
     const newSortRdmResult = rdmresult
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)
-      .concat(datas[questionCurrent].reponse1)
+      .concat(datasQuestion[questionCurrent].reponse1)
       .sort(() => Math.random() - 0.5);
     setSortRdmResult(newSortRdmResult);
-  }, [questionCurrent, datas]);
+    setCounter(20);
+    setTimeout(() => setShowQuestion(true), 300);
+  }, [questionCurrent, datasQuestion]);
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!isFinished) {
+      if (counter > 0) {
+        setCounter(counter - 1);
+      } else if (counter === 0) {
+        wrongClickAnswer();
+      }
+    }
+    }, 1000);
+    return () => clearInterval(timer);
+  });
 
   function goodClickAnswer() {
     setNbTotalGoodAnswer(nbTotalGoodAnswer + 1);
     setQuestionCurrent(questionCurrent + 1);
-    setCounter(20)
-
   }
 
   function wrongClickAnswer() {
     setQuestionCurrent(questionCurrent + 1);
+  }
+
+  function restartQuiz(){
+    console.log(datasQuestion);
+
+    setDatasQuestion(datasQuestion.sort(() => Math.random() - 0.5))
+    console.log(datasQuestion);
     setCounter(20)
+    setQuestionCurrent(0)
+    setNbTotalGoodAnswer(0)
   }
 
   function renderQuestion() {
-    const goodAnswer = datas[questionCurrent].reponse1;
+    const goodAnswer = datasQuestion[questionCurrent].reponse1;
     return (
       <div>
         <div className='chrono'>Temps restant: {counter}</div>
         <div className='cadreQuestion'>
-        <p className='question'>{datas[questionCurrent].question}</p>
+        <p className='question'>{datasQuestion[questionCurrent].question}</p>
         </div>
         <div className='btn-container'>
-          {sortRdmResult.map((element) => {
-            if (element === goodAnswer) {
-              return (
-                <button
-                  className='btn-rep'
-                  key={uuidv4()}
-                  onClick={goodClickAnswer}
-                >
-                 {element}
-                </button>
-              );
-            }
-            return (
-              <button
-                className='btn-rep'
-                key={uuidv4()}
-                onClick={wrongClickAnswer}
-              >
-                {element}
-              </button>
-            );
-          })}
+          {sortRdmResult.map((element) => (
+            <button
+              className='btn-rep'
+              key={uuidv4()}
+              onClick={element === goodAnswer ? goodClickAnswer : wrongClickAnswer}
+            >
+              {element}
+            </button>
+          ))}
         </div>
       </div>
     );
   }
 
   function renderEnd() {
-    // axios.post("http://localhost:8000/api/parties", {
-    //   score: nbTotalGoodAnswer,
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //   })
+    if(!isFinished)setIsFinished(true)
     return (
-      <div>
+      <div className='pageResult'>
         <p className='result'>
           Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
         </p>
+        <button className='restart' onClick={restartQuiz}>Recommencer</button>
+        <Link className='returnCategorie' to='./categories'>Catégories</Link>
       </div>
     );
   }
 
-  return questionCurrent < 10 ? renderQuestion() : renderEnd();
+  return showQuestion ? questionCurrent < 10 ? renderQuestion() : renderEnd() : "Loading..."
 }
