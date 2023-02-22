@@ -53,7 +53,6 @@
 }
 
 .result {
-    margin-top: 200px;
     font-size: 30px;
 }
 
@@ -95,3 +94,16 @@
 .returnCategorie:hover, .restart:hover {
     border: 2px solid white;
 }
+
+.animation-result{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    margin-top: 150px;
+}
+
+.rep-result{
+    margin-top: 0;
+}
+

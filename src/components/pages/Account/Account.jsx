@@ -65,6 +65,7 @@ export default function Account() {
 
   function updateUserDatas(updatedData, id) {
     console.log(updatedData);
+    console.log(formData);
     axios
       .put(`http://localhost:8000/api/users/${id}`, updatedData)
       .then((response) => {

@@ -102,3 +102,12 @@ p {
 .ReactModal__Overlay--before-close{
     transform: translate(-100%, 0%);
 }
+
+
+.generated p{
+   color: rgb(32, 149, 216);
+}
+
+.loading-div{
+    margin-top: 50%;
+}
