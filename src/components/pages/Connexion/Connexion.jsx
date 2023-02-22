@@ -36,8 +36,6 @@ export default function Connexion() {
         if(item.email === formData.email){
           isUserID = item.id;
           userName = item.name;
-          
-          
         }
         return null;
     })

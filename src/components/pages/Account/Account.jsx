@@ -33,7 +33,6 @@ export default function Account() {
         setUserDatas(datas);
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 
@@ -41,6 +40,13 @@ export default function Account() {
     event.preventDefault();
     const updatedData = {
       email: formData.newEmail,
+    };
+    updateUserDatas(updatedData, userID);
+  }
+  function updateUserName(event) {
+    event.preventDefault();
+    const updatedData = {
+      name: formData.name,
     };
     updateUserDatas(updatedData, userID);
   }
@@ -75,24 +81,59 @@ export default function Account() {
         );
       });
   }
+  
 
   // const currentUserData = userDatas.findIndex(x => x.id == userID)
-  let userdata;
-  userDatas.map((item) => {
-    if(item.id == userID){
-userdata = item
-    }
-  })
+  const userdata = userDatas.find(item => item.id === parseInt(userID));
+
 
   return (
     <div>
       {Object.keys(userDatas).length > 0 ? (
-        <><div>
-        </div><form
-          className="changement-email"
-          method="post"
-          onSubmit={updateUserEmail}
-        >
+        <div>
+          <div className="container-profil">
+            <p>Bonjour, {userdata.name}</p>
+            <p>{userdata.email}</p>
+            <p>
+              Mail vérifié :{" "}
+              {userdata.email_verified_at === null ||
+              userdata.email_verified_at === false
+                ? "Non"
+                : "Oui"}
+            </p>
+          </div>
+
+          <form
+            className="changement-email"
+            method="post"
+            onSubmit={updateUserName}
+          >
+            <div className="container-changement">
+              <div className="changement-type">
+                <label htmlFor="changename">Nouveau nom</label>
+                <input
+                  type="text"
+                  id="changename"
+                  className="changement-input"
+                  placeholder="Daniel"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="submit"
+                  value={"Enregistrer"}
+                  className="changement-submit boutonEnv"
+                />
+              </div>
+            </div>
+          </form>
+
+          <form
+            className="changement-email"
+            method="post"
+            onSubmit={updateUserEmail}
+          >
             <div className="container-changement">
               <div className="changement-type">
                 <label htmlFor="changemail">Nouvelle adresse e-mail</label>
@@ -145,8 +186,8 @@ userdata = item
                   className="changement-submit boutonEnv" />
               </div>
             </div>
-          </form></>
-        
+          </form>
+        </div>
       ) : (
         <div>Loading...</div>
       )}

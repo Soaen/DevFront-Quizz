@@ -48,15 +48,10 @@ export default function Form() {
         password: formData.password
       })
       .then(response => {
-        console.log(response)
         navigate("/Connexion");
       })
       .catch(error => {
-        console.log(error);
       });
-
-    // Faire quelque chose avec les données
-    console.log(formData);
   };
   
   return (

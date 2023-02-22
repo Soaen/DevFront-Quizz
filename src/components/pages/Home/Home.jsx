@@ -10,9 +10,6 @@ export default function Home() {
   useEffect(() => {
     const isConnected = storage.getItem('isConnected');
     setIsConnected(!!isConnected);
-    // if (isConnected === true ) {
-    //   setIsConnected(true);
-    // }
   });
 
   const handleLogout = () => {

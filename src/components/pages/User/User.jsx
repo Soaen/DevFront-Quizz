@@ -22,9 +22,7 @@ function Profil() {
   const [datas, setDatas] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const storage = window.localStorage;
-
-
-
+  
   useEffect(() => {
     fetch(apiURL)
     .then (response => response.json())
@@ -72,11 +70,12 @@ function Profil() {
   }
   return (
     <div className="Profil">
-      <h5 className="bienvenue">bienvenue {userName}</h5>
+      <h5 className="bienvenue">Bienvenue {userName}</h5>
         <h1 className="titreCompte">Gestion du compte</h1>
         <div>
         <div className="titreProfil">
-        <Link to = '/Compte'  className="compteModif">Modifier mes informations</Link>
+          
+        {/* <Link to = '/Compte'  className="compteModif">Modifier mes informations</Link> */}
              
       <a className="modalBouton" onClick={setModalOpen}>Consulter mon historique</a>
       </div>
