@@ -3,7 +3,7 @@ import "./style/Account.css";
 import axios from "axios";
 
 export default function Account() {
-  const [userDatas, setUserDatas] = useState({});
+  const [userDatas, setUserDatas] = useState([]);
   const [userID, setUserID] = useState(1);
   const [formData, setFormData] = useState({
     id: userID,
@@ -14,7 +14,7 @@ export default function Account() {
     newPasswordField: "",
     confirmNewPasswordField: "",
   });
-  const currentUserData = userDatas.find(x => x.id == userID)
+
   const passwordRegex = /^(?=.*\d)(?=.*[\W_])[a-zA-Z0-9\W_]{5,}$/;
 
   const handleInputChange = (event) => {
@@ -81,19 +81,25 @@ export default function Account() {
       });
   }
 
-console.log(currentUserData);
+  // const currentUserData = userDatas.findIndex(x => x.id == userID)
+  let userdata;
+  userDatas.map((item) => {
+    if(item.id == userID){
+userdata = item
+    }
+  })
 
   return (
     <div>
       {Object.keys(userDatas).length > 0 ? (
         <div>
           <div className="container-profil">
-            <p>Bonjour, {currentUserData.name}</p>
-            <p>{currentUserData.email}</p>
+            <p>Bonjour, {userdata.name}</p>
+            <p>{userdata.email}</p>
             <p>
               Mail vérifié :{" "}
-              {currentUserData.email_verified_at === null ||
-              currentUserData.email_verified_at === false
+              {userdata.email_verified_at === null ||
+              userdata.email_verified_at === false
                 ? "Non"
                 : "Oui"}
             </p>
