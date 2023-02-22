@@ -72,7 +72,14 @@ export default function ResponseGenerate({  datas }) {
     setDatabased(false)
   }
 
-
+function renderLoading() {
+  return(
+    <div className="loading-div">
+        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ht6o1bdu.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <div id='generated'><p>Loading...</p></div>
+      </div>
+  )
+}
 
   function renderQuestion() {
     const goodAnswer = datasQuestion[questionCurrent].reponse1;
@@ -117,8 +124,15 @@ export default function ResponseGenerate({  datas }) {
 
     return (
       <div className='pageResult'>
+        <div className='animation-result'>
+        {nbTotalGoodAnswer >= 5 ? <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_touohxv0.json" background="transparent" speed="1" loop autoplay></lottie-player> : <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_gxr7hcxk.json"  background="transparent" speed="1" loop autoplay></lottie-player>}
+
+        </div>
         <p className='result'>
-          Test fini ! Nombre de bonnes réponses : {nbTotalGoodAnswer}/10
+          Test fini !
+        </p>
+        <p className='result rep-result'>
+          Votre score : {nbTotalGoodAnswer}/10
         </p>
         <button onClick={restartQuiz} className='restart'>Recommencer</button>
         <Link to='/categorie' className='returnCategorie'>Catégories</Link>
@@ -126,5 +140,5 @@ export default function ResponseGenerate({  datas }) {
     );
   }
 
-  return showQuestion ? questionCurrent < 10 ? renderQuestion() : renderEnd() : "Loading..."
+  return showQuestion ? questionCurrent < 10 ? renderQuestion() : renderEnd() : renderLoading()
 }

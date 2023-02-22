@@ -29,15 +29,10 @@ function Profil() {
     fetch(apiURL)
     .then (response => response.json())
     .then(data => {
-      let tempData = [];
       data.forEach(e => {
-          if(e.id%2 === 1){
-            tempData.push(e)
-            var udpatedTempData = tempData.filter(item => item.idjoueur === parseInt(storage.getItem('userID'))); 
-
-            setDatas(udpatedTempData)
-            setLoading(false)
-          }
+        const tempData = data.filter(e => e.id % 2 === 1 && e.idjoueur === parseInt(storage.getItem('userID')));
+        setDatas(tempData)
+        setLoading(false)
       });
     })
   }, [])
@@ -58,9 +53,9 @@ function Profil() {
   
   if (isLoading) {
     return (
-      <div>
+      <div className="loading-div">
         <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ht6o1bdu.json" background="transparent" speed="1" loop autoplay></lottie-player>
-        <div id='generated'>Loading...</div>
+        <div id='generated'><p>Loading...</p></div>
       </div>
     );
   }
