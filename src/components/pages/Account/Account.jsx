@@ -26,6 +26,8 @@ export default function Account() {
     if (userId) {
       setUserID(userId);
     }
+    console.log(userID)
+    
     axios
       .get("http://localhost:8000/api/users")
       .then((response) => {
@@ -36,6 +38,8 @@ export default function Account() {
         console.log(error);
       });
   }, []);
+  
+      
 
   function updateUserEmail(event) {
     event.preventDefault();
@@ -79,6 +83,7 @@ export default function Account() {
         );
       });
   }
+  
 
   return (
     <div>

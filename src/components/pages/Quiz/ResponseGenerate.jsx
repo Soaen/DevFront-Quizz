@@ -69,6 +69,7 @@ export default function ResponseGenerate({  datas }) {
     setIsFinished(false)
     setQuestionCurrent(0)
     setNbTotalGoodAnswer(0)
+    setDatabased(false)
   }
 
 

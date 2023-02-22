@@ -82,7 +82,7 @@ export default function Connexion() {
 
         <label className="saveConnexion">
           <input type="checkbox" name="rememberMe" aria-label="rememberMe" checked={rememberMe} onChange={handleRememberMe} />
-          Se souvenir de moi
+          Rester connecté
         </label>
 
         {formErrors.server && <span className="error-message">{formErrors.server}</span>}

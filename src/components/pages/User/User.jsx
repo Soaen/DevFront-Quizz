@@ -94,7 +94,7 @@ function Profil() {
             <h2>Dernieres sessions : </h2>
             {typeof datas3 !== 'undefined' ? 
             <div className="score">
-            <h3>{new Date(datas1.created_at).toLocaleDateString('fr-FR')}</h3>
+            <h3>{new Date(datas3.created_at).toLocaleDateString('fr-FR')}</h3>
             {/* <h4>Catégorie</h4> */}
             <p className="chiffreScore">{datas3.score} points</p>
             </div>
@@ -112,7 +112,7 @@ function Profil() {
             }
             {typeof datas1 !== 'undefined' ? 
             <div>
-            <h3>{new Date(datas3.created_at).toLocaleDateString('fr-FR')} :</h3>
+            <h3>{new Date(datas1.created_at).toLocaleDateString('fr-FR')} :</h3>
             {/* <h4>categorie Litterature</h4> */}
             <p className="chiffreScore">{datas1.score} points</p>
             </div>
