@@ -3,7 +3,7 @@ import "./style/Account.css";
 import axios from "axios";
 
 export default function Account() {
-  const [userDatas, setUserDatas] = useState({});
+  const [userDatas, setUserDatas] = useState([]);
   const [userID, setUserID] = useState(1);
   const [formData, setFormData] = useState({
     id: userID,
@@ -21,9 +21,8 @@ export default function Account() {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userID");
     if (userId) {
       setUserID(userId);
     }
@@ -46,6 +45,13 @@ export default function Account() {
     event.preventDefault();
     const updatedData = {
       email: formData.newEmail,
+    };
+    updateUserDatas(updatedData, userID);
+  }
+  function updateUserName(event) {
+    event.preventDefault();
+    const updatedData = {
+      name: formData.name,
     };
     updateUserDatas(updatedData, userID);
   }
@@ -87,21 +93,52 @@ export default function Account() {
   }
   
 
+  // const currentUserData = userDatas.findIndex(x => x.id == userID)
+  const userdata = userDatas.find(item => item.id === parseInt(userID));
+
+
   return (
     <div>
       {Object.keys(userDatas).length > 0 ? (
         <div>
           <div className="container-profil">
-            <p>Bonjour, {userDatas[userID - 1].name}</p>
-            <p>{userDatas[userID - 1].email}</p>
+            <p>Bonjour, {userdata.name}</p>
+            <p>{userdata.email}</p>
             <p>
               Mail vérifié :{" "}
-              {userDatas[userID - 1].email_verified_at === null ||
-              userDatas[userID - 1].email_verified_at === false
+              {userdata.email_verified_at === null ||
+              userdata.email_verified_at === false
                 ? "Non"
                 : "Oui"}
             </p>
           </div>
+
+          <form
+            className="changement-email"
+            method="post"
+            onSubmit={updateUserName}
+          >
+            <div className="container-changement">
+              <div className="changement-type">
+                <label htmlFor="changename">Nouveau nom</label>
+                <input
+                  type="text"
+                  id="changename"
+                  className="changement-input"
+                  placeholder="Daniel"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="submit"
+                  value={"Enregistrer"}
+                  className="changement-submit boutonEnv"
+                />
+              </div>
+            </div>
+          </form>
+
           <form
             className="changement-email"
             method="post"
