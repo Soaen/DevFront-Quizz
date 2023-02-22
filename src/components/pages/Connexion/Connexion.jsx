@@ -28,16 +28,21 @@ export default function Connexion() {
     // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
     let response = await axios("http://localhost:8000/api/users");
     let users = response.data;
-    let userID = null;
-
     let isValidUser = users.some(user => user.email === formData.email && user.password === formData.password);
-    let isUserID = users.some(user => userID = user.id)
+    let isUserID = null
+    users.map((item) => {
+        if(item.email === formData.email){
+          isUserID = item.id
+          
+        }
+        return null;
+    })
 
     if (isValidUser) {
       navigate("/Profil");
 
       if (rememberMe) {
-        storage.setItem("userID", userID)
+        storage.setItem("userID", isUserID)
         storage.setItem("isConnected", formData.email);
       }
     } else {

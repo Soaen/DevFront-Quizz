@@ -66,6 +66,7 @@ export default function ResponseGenerate({  datas }) {
   function restartQuiz(){
     setDatasQuestion(datasQuestion.sort(() => Math.random() - 0.5))
     setCounter(20)
+    setIsFinished(false)
     setQuestionCurrent(0)
     setNbTotalGoodAnswer(0)
   }
