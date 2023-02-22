@@ -6,6 +6,7 @@ export default function Account() {
   const [userDatas, setUserDatas] = useState({});
   const [userID, setUserID] = useState(1);
   const [formData, setFormData] = useState({
+    id: userID,
     name: "",
     email: "",
     passwordField: "",
@@ -65,6 +66,7 @@ export default function Account() {
 
   function updateUserDatas(updatedData, id) {
     console.log(updatedData);
+    console.log(formData);
     axios
       .put(`http://localhost:8000/api/users/${id}`, updatedData)
       .then((response) => {
