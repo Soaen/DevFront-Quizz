@@ -44,6 +44,13 @@ export default function Account() {
     };
     updateUserDatas(updatedData, userID);
   }
+  function updateUserName(event) {
+    event.preventDefault();
+    const updatedData = {
+      name: formData.name,
+    };
+    updateUserDatas(updatedData, userID);
+  }
 
   function updateUserPassword(event) {
     event.preventDefault();
@@ -104,6 +111,32 @@ userdata = item
                 : "Oui"}
             </p>
           </div>
+
+          <form
+            className="changement-email"
+            method="post"
+            onSubmit={updateUserName}
+          >
+            <div className="container-changement">
+              <div className="changement-type">
+                <label htmlFor="changename">Nouveau nom</label>
+                <input
+                  type="text"
+                  id="changename"
+                  className="changement-input"
+                  placeholder="Daniel"
+                  name="newName"
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="submit"
+                  value={"Enregistrer"}
+                  className="changement-submit boutonEnv"
+                />
+              </div>
+            </div>
+          </form>
+
           <form
             className="changement-email"
             method="post"
