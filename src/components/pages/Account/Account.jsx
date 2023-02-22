@@ -14,16 +14,15 @@ export default function Account() {
     newPasswordField: "",
     confirmNewPasswordField: "",
   });
-
+  const currentUserData = userDatas.find(x => x.id == userID)
   const passwordRegex = /^(?=.*\d)(?=.*[\W_])[a-zA-Z0-9\W_]{5,}$/;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userID");
     if (userId) {
       setUserID(userId);
     }
@@ -82,17 +81,19 @@ export default function Account() {
       });
   }
 
+console.log(currentUserData);
+
   return (
     <div>
       {Object.keys(userDatas).length > 0 ? (
         <div>
           <div className="container-profil">
-            <p>Bonjour, {userDatas[userID - 1].name}</p>
-            <p>{userDatas[userID - 1].email}</p>
+            <p>Bonjour, {currentUserData.name}</p>
+            <p>{currentUserData.email}</p>
             <p>
               Mail vérifié :{" "}
-              {userDatas[userID - 1].email_verified_at === null ||
-              userDatas[userID - 1].email_verified_at === false
+              {currentUserData.email_verified_at === null ||
+              currentUserData.email_verified_at === false
                 ? "Non"
                 : "Oui"}
             </p>
