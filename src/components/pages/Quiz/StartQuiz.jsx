@@ -42,7 +42,7 @@ export default function StartQuizz() {
   }, []);
 
   return (
-    <div>
+    <div className="containSlide">
       <img className="slide" src={photosToggle[index].photo} alt={photosToggle[index].nom} />
     </div>
   );

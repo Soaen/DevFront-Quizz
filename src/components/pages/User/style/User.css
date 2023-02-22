@@ -12,7 +12,7 @@
 .titreProfil {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(71,143,217,1) 0%, rgba(16,190,244,1) 100%, rgba(32,149,216,1) 100%);
+    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(71, 143, 217, 1) 0%, rgba(16, 190, 244, 1) 100%, rgba(32, 149, 216, 1) 100%);
     width: 95%;
     height: 500px;
     align-items: center;
@@ -20,17 +20,19 @@
     border-radius: 50px;
 }
 
-.titreCompte { 
-    color:rgb(32, 149, 216);
+.titreCompte {
+    color: rgb(32, 149, 216);
     margin-top: 150px;
     margin-bottom: 100px;
     text-align: center;
     font-size: 45px;
     text-shadow: 1px 1px 5px black;
-    
+
 }
 
-.modalBouton, .compteModif, .retour {
+.modalBouton,
+.compteModif,
+.retour {
     font-size: 25px;
     font-weight: bold;
 }
@@ -38,18 +40,19 @@
 .modal {
     display: flex;
     flex-direction: column;
-    /* padding: 30px; */
     margin-bottom: 50px;
-    
+
 }
 
-h2, h4, p {
-   color: rgb(32, 149, 216);
+h2,
+h4,
+p {
+    color: rgb(32, 149, 216);
 }
 
 h3 {
     text-align: center;
-    color : white
+    color: white
 }
 
 h2 {
@@ -62,15 +65,14 @@ p {
     text-align: center;
 }
 
-.ReactModal__Content 
-{
+.ReactModal__Content {
     background-color: rgb(60, 63, 63) !important;
     width: 90% !important;
     border-radius: 50px !important;
 }
 
 .retour {
-    background-color:rgb(32, 149, 216);
+    background-color: rgb(32, 149, 216);
     padding: 10px;
     padding-left: 30px;
     padding-right: 30px;
@@ -84,7 +86,7 @@ p {
 }
 
 .score {
-    border-bottom: solid 1px white ;
+    border-bottom: solid 1px white;
 }
 
 
@@ -95,10 +97,15 @@ p {
 
 }
 
-.ReactModal__Overlay--after-open{
+.ReactModal__Overlay--after-open {
     transform: translate(0%, 0%);
 }
 
-.ReactModal__Overlay--before-close{
+.ReactModal__Overlay--before-close {
     transform: translate(-100%, 0%);
+}
+
+.chiffreScore {
+    font-size: 20px;
+    font-weight: bold;
 }

@@ -14,13 +14,13 @@ const customStyles = {
     width: 400,
   },
 };
-const apiURL = 'http://127.0.0.1:8000/api/parties'
 
 function Profil() {
   const [modalOpen, setModalOpen] = useState(false);
   const [datas, setDatas] = useState([]);
   const [isLoading, setLoading] = useState(true);
-
+  const userID = localStorage.getItem("userID");
+  const apiURL = `http://127.0.0.1:8000/api/parties/${userID}`
 
   useEffect(() => {
     fetch(apiURL)
@@ -37,11 +37,20 @@ function Profil() {
     })
   }, [])
 
-  const datas1 = datas[0]
-  const datas2 = datas[1]
-  const datas3 = datas[2]
-
-
+  function compare( a, b ) {
+    if ( a.id < b.id ){
+      return 1;
+    }
+    if ( a.id > b.id ){
+      return -1;
+    }
+    return 0;
+  }
+  datas.sort(compare);
+  const datas1 = datas[2];
+  const datas2 = datas[1];
+  const datas3 = datas[0];
+  
   if (isLoading) {
     return (
       <div>
@@ -56,11 +65,10 @@ function Profil() {
       <div className="score">
               <h3>Aucune données disponible</h3>
               {/* <h4>Catégories</h4> */}
-              <p>0 points</p>
+              <p className="chiffreScore">0 points</p>
               </div>
     )
   }
-  console.log(datas1);
   return (
     <div className="Profil">
         <h1 className="titreCompte">Gestion du compte</h1>
@@ -75,21 +83,19 @@ function Profil() {
         isOpen={modalOpen ? true : false}
         onRequestClose={() => setModalOpen(false)}
         style={customStyles}
-        ariaHideApp={false}
-        
-      >
+        ariaHideApp={false}>
 
         <div className="modal">
             <h2>Dernieres sessions : </h2>
-            {typeof datas1 !== 'undefined' ? 
+            {typeof datas3 !== 'undefined' ? 
             <div className="score">
-            <h3>{new Date(Date.parse(datas1.created_at)).getDate() + "/"
-            + new Date(Date.parse(datas1.created_at)).getMonth() + "/" 
-            + new Date(Date.parse(datas1.created_at)).getFullYear()} :</h3>
+            <h3>{new Date(Date.parse(datas3.created_at)).getDate() + "/"
+            + new Date(Date.parse(datas3.created_at)).getMonth() + "/" 
+            + new Date(Date.parse(datas3.created_at)).getFullYear()} :</h3>
             {/* <h4>Catégorie</h4> */}
-            <p>{datas1.score} points</p>
+            <p className="chiffreScore">{datas3.score} points</p>
             </div>
-          :
+            :
           noDatas()  
           }
             {typeof datas2 !== 'undefined' ? 
@@ -98,21 +104,21 @@ function Profil() {
             + new Date(Date.parse(datas2.created_at)).getMonth() + "/" 
             + new Date(Date.parse(datas2.created_at)).getFullYear()} :</h3>
             {/* <h4>categorie Histoire/Geo</h4> */}
-            <p>{datas2.score} points</p>
+            <p className="chiffreScore">{datas2.score} points</p>
             </div>
             :
-              noDatas()
+          noDatas()
             }
-            {typeof datas3 !== 'undefined' ? 
+            {typeof datas1 !== 'undefined' ? 
             <div>
-            <h3>{new Date(Date.parse(datas3.created_at)).getDate() + "/"
-            + new Date(Date.parse(datas3.created_at)).getMonth() + "/" 
-            + new Date(Date.parse(datas3.created_at)).getFullYear()} :</h3>
+            <h3>{new Date(Date.parse(datas1.created_at)).getDate() + "/"
+            + new Date(Date.parse(datas1.created_at)).getMonth() + "/" 
+            + new Date(Date.parse(datas1.created_at)).getFullYear()} :</h3>
             {/* <h4>categorie Litterature</h4> */}
-            <p>{datas3.score} points</p>
+            <p className="chiffreScore">{datas1.score} points</p>
             </div>
             :
-              noDatas()
+          noDatas()
             }
         </div>
 <div className="centre">

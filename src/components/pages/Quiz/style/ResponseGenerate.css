@@ -95,3 +95,16 @@
 .returnCategorie:hover, .restart:hover {
     border: 2px solid white;
 }
+
+@media screen and (min-width: 480px) {
+    .cadreQuestion{
+        display: flex;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+    .question{
+        display: flex;
+        margin: auto;  
+    }
+}
