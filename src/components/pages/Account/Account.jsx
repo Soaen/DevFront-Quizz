@@ -89,13 +89,8 @@ export default function Account() {
   }
 
   // const currentUserData = userDatas.findIndex(x => x.id == userID)
-  let userdata;
-  userDatas.map((item) => {
-    if(item.id === parseInt(userID)){
-    userdata = item
-    }
-    return null;
-  })
+  const userdata = userDatas.find(item => item.id === parseInt(userID));
+
 
   return (
     <div>
@@ -126,7 +121,8 @@ export default function Account() {
                   id="changename"
                   className="changement-input"
                   placeholder="Daniel"
-                  name="newName"
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
                 />
                 <input
