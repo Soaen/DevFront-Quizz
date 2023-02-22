@@ -22,9 +22,7 @@ function Profil() {
   const [datas, setDatas] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const storage = window.localStorage;
-
-
-
+  
   useEffect(() => {
     fetch(apiURL)
     .then (response => response.json())
@@ -36,6 +34,7 @@ function Profil() {
       });
     })
   }, [])
+  let userName = storage.getItem('name')
 
   function compare( a, b ) {
     if ( a.id < b.id ){
@@ -51,6 +50,7 @@ function Profil() {
   const datas2 = datas[1];
   const datas3 = datas[0];
   
+  
   if (isLoading) {
     return (
       <div className="loading-div">
@@ -62,19 +62,20 @@ function Profil() {
 
   function noDatas(){
     return(
-      <div className="score">
-              <h3>Aucune données disponible</h3>
-              {/* <h4>Catégories</h4> */}
-              <p className="chiffreScore">0 points</p>
-              </div>
+      <><div className="score">
+        <h3>Aucune données disponible</h3>
+        <p className="chiffreScore">0 points</p>
+      </div></>
     )
   }
   return (
     <div className="Profil">
+      <h5 className="bienvenue">Bienvenue {userName}</h5>
         <h1 className="titreCompte">Gestion du compte</h1>
         <div>
         <div className="titreProfil">
-        <Link to = '/Compte'  className="compteModif">Modifier mes informations</Link>
+          
+        {/* <Link to = '/Compte'  className="compteModif">Modifier mes informations</Link> */}
              
       <a className="modalBouton" onClick={setModalOpen}>Consulter mon historique</a>
       </div>
@@ -89,8 +90,7 @@ function Profil() {
             <h2>Dernieres sessions : </h2>
             {typeof datas3 !== 'undefined' ? 
             <div className="score">
-            <h3>{new Date(datas1.created_at).toLocaleDateString('fr-FR')}</h3>
-            {/* <h4>Catégorie</h4> */}
+            <h3>{new Date(datas3.created_at).toLocaleDateString('fr-FR')}</h3>
             <p className="chiffreScore">{datas3.score} points</p>
             </div>
             :
@@ -99,7 +99,6 @@ function Profil() {
             {typeof datas2 !== 'undefined' ? 
               <div className="score">
             <h3>{new Date(datas2.created_at).toLocaleDateString('fr-FR')} :</h3>
-            {/* <h4>categorie Histoire/Geo</h4> */}
             <p className="chiffreScore">{datas2.score} points</p>
             </div>
             :
@@ -107,8 +106,7 @@ function Profil() {
             }
             {typeof datas1 !== 'undefined' ? 
             <div>
-            <h3>{new Date(datas3.created_at).toLocaleDateString('fr-FR')} :</h3>
-            {/* <h4>categorie Litterature</h4> */}
+            <h3>{new Date(datas1.created_at).toLocaleDateString('fr-FR')} :</h3>
             <p className="chiffreScore">{datas1.score} points</p>
             </div>
             :
