@@ -6,6 +6,7 @@ export default function Account() {
   const [userDatas, setUserDatas] = useState({});
   const [userID, setUserID] = useState(1);
   const [formData, setFormData] = useState({
+    id: userID,
     name: "",
     email: "",
     passwordField: "",
