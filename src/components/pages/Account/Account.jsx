@@ -3,7 +3,7 @@ import "./style/Account.css";
 import axios from "axios";
 
 export default function Account() {
-  const [userDatas, setUserDatas] = useState({});
+  const [userDatas, setUserDatas] = useState([]);
   const [userID, setUserID] = useState(1);
   const [formData, setFormData] = useState({
     id: userID,
@@ -21,14 +21,11 @@ export default function Account() {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userID");
     if (userId) {
       setUserID(userId);
     }
-    console.log(userID)
-    
     axios
       .get("http://localhost:8000/api/users")
       .then((response) => {
@@ -39,8 +36,6 @@ export default function Account() {
         console.log(error);
       });
   }, []);
-  
-      
 
   function updateUserEmail(event) {
     event.preventDefault();
@@ -69,44 +64,35 @@ export default function Account() {
   }
 
   function updateUserDatas(updatedData, id) {
-    console.log(updatedData);
-    console.log(formData);
     axios
       .put(`http://localhost:8000/api/users/${id}`, updatedData)
       .then((response) => {
-        console.log(updatedData);
-        console.log(response.data);
         alert("Vos informations ont été mises à jour");
       })
       .catch((error) => {
-        console.log(error);
         alert(
           "Une erreur est survenue lors de la mise à jour de vos informations"
         );
       });
   }
-  
+
+  // const currentUserData = userDatas.findIndex(x => x.id == userID)
+  let userdata;
+  userDatas.map((item) => {
+    if(item.id == userID){
+userdata = item
+    }
+  })
 
   return (
     <div>
       {Object.keys(userDatas).length > 0 ? (
-        <div>
-          <div className="container-profil">
-            <p>Bonjour, {userDatas[userID - 1].name}</p>
-            <p>{userDatas[userID - 1].email}</p>
-            <p>
-              Mail vérifié :{" "}
-              {userDatas[userID - 1].email_verified_at === null ||
-              userDatas[userID - 1].email_verified_at === false
-                ? "Non"
-                : "Oui"}
-            </p>
-          </div>
-          <form
-            className="changement-email"
-            method="post"
-            onSubmit={updateUserEmail}
-          >
+        <><div>
+        </div><form
+          className="changement-email"
+          method="post"
+          onSubmit={updateUserEmail}
+        >
             <div className="container-changement">
               <div className="changement-type">
                 <label htmlFor="changemail">Nouvelle adresse e-mail</label>
@@ -117,17 +103,14 @@ export default function Account() {
                   placeholder="votre@nouvelle-email.com"
                   name="newEmail"
                   value={formData.newEmail}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
                 <input
                   type="submit"
                   value={"Enregistrer"}
-                  className="changement-submit boutonEnv"
-                />
+                  className="changement-submit boutonEnv" />
               </div>
             </div>
-          </form>
-          <form
+          </form><form
             className="changement-pswd"
             method="post"
             onSubmit={updateUserPassword}
@@ -142,8 +125,7 @@ export default function Account() {
                   placeholder="Nouveau mot de passe"
                   name="newPasswordField"
                   value={formData.newPasswordField}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
               </div>
               <div className="changement-type">
                 <label htmlFor="confirmpassword">
@@ -156,17 +138,15 @@ export default function Account() {
                   placeholder="Confirmez le nouveau mot de passe"
                   name="confirmNewPasswordField"
                   value={formData.confirmNewPasswordField}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
                 <input
                   type="submit"
                   value={"Enregistrer"}
-                  className="changement-submit boutonEnv"
-                />
+                  className="changement-submit boutonEnv" />
               </div>
             </div>
-          </form>
-        </div>
+          </form></>
+        
       ) : (
         <div>Loading...</div>
       )}
