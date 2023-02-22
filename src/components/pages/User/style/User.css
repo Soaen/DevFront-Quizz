@@ -1,6 +1,6 @@
 .modalBouton {
     color: rgb(60, 63, 63);
-    margin-top: 250px;
+    margin-top: 130px;
 }
 
 .compteModif {
@@ -14,7 +14,7 @@
     flex-direction: column;
     background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(71, 143, 217, 1) 0%, rgba(16, 190, 244, 1) 100%, rgba(32, 149, 216, 1) 100%);
     width: 95%;
-    height: 500px;
+    height: 300px;
     align-items: center;
     margin: auto;
     border-radius: 50px;
@@ -22,8 +22,8 @@
 
 .titreCompte {
     color: rgb(32, 149, 216);
-    margin-top: 150px;
-    margin-bottom: 100px;
+    margin-top: 130px;
+    margin-bottom: 200px;
     text-align: center;
     font-size: 45px;
     text-shadow: 1px 1px 5px black;
@@ -42,6 +42,13 @@
     flex-direction: column;
     margin-bottom: 50px;
 
+}
+
+.bienvenue {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    margin-top: 130px;
 }
 
 h2,
@@ -109,6 +116,7 @@ p {
     font-size: 20px;
     font-weight: bold;
 }
+
 .generated p{
    color: rgb(32, 149, 216);
 }

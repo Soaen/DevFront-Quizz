@@ -33,7 +33,6 @@ export default function Account() {
         setUserDatas(datas);
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 
@@ -71,22 +70,18 @@ export default function Account() {
   }
 
   function updateUserDatas(updatedData, id) {
-    console.log(updatedData);
-    console.log(formData);
     axios
       .put(`http://localhost:8000/api/users/${id}`, updatedData)
       .then((response) => {
-        console.log(updatedData);
-        console.log(response.data);
         alert("Vos informations ont été mises à jour");
       })
       .catch((error) => {
-        console.log(error);
         alert(
           "Une erreur est survenue lors de la mise à jour de vos informations"
         );
       });
   }
+  
 
   // const currentUserData = userDatas.findIndex(x => x.id == userID)
   const userdata = userDatas.find(item => item.id === parseInt(userID));
@@ -149,17 +144,14 @@ export default function Account() {
                   placeholder="votre@nouvelle-email.com"
                   name="newEmail"
                   value={formData.newEmail}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
                 <input
                   type="submit"
                   value={"Enregistrer"}
-                  className="changement-submit boutonEnv"
-                />
+                  className="changement-submit boutonEnv" />
               </div>
             </div>
-          </form>
-          <form
+          </form><form
             className="changement-pswd"
             method="post"
             onSubmit={updateUserPassword}
@@ -174,8 +166,7 @@ export default function Account() {
                   placeholder="Nouveau mot de passe"
                   name="newPasswordField"
                   value={formData.newPasswordField}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
               </div>
               <div className="changement-type">
                 <label htmlFor="confirmpassword">
@@ -188,13 +179,11 @@ export default function Account() {
                   placeholder="Confirmez le nouveau mot de passe"
                   name="confirmNewPasswordField"
                   value={formData.confirmNewPasswordField}
-                  onChange={handleInputChange}
-                />
+                  onChange={handleInputChange} />
                 <input
                   type="submit"
                   value={"Enregistrer"}
-                  className="changement-submit boutonEnv"
-                />
+                  className="changement-submit boutonEnv" />
               </div>
             </div>
           </form>

@@ -24,25 +24,28 @@ export default function Connexion() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
 
     // Vérifier si l'adresse e-mail et le mot de passe existent dans la base de données
     let response = await axios("http://localhost:8000/api/users");
     let users = response.data;
     let isValidUser = users.some(user => user.email === formData.email && user.password === formData.password);
     let isUserID = null
+    let userName;
     users.map((item) => {
         if(item.email === formData.email){
-          isUserID = item.id
-          
+          isUserID = item.id;
+          userName = item.name;
         }
         return null;
     })
+    storage.setItem("name", userName )
+    storage.setItem("userID", isUserID)
 
     if (isValidUser) {
       navigate("/Profil");
 
       if (rememberMe) {
-        storage.setItem("userID", isUserID)
         storage.setItem("isConnected", formData.email);
       }
     } else {
@@ -82,7 +85,7 @@ export default function Connexion() {
 
         <label className="saveConnexion">
           <input type="checkbox" name="rememberMe" aria-label="rememberMe" checked={rememberMe} onChange={handleRememberMe} />
-          Se souvenir de moi
+          Rester connecté
         </label>
 
         {formErrors.server && <span className="error-message">{formErrors.server}</span>}
