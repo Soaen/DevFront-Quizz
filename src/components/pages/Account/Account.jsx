@@ -91,9 +91,10 @@ export default function Account() {
   // const currentUserData = userDatas.findIndex(x => x.id == userID)
   let userdata;
   userDatas.map((item) => {
-    if(item.id == userID){
-userdata = item
+    if(item.id === parseInt(userID)){
+    userdata = item
     }
+    return null;
   })
 
   return (
