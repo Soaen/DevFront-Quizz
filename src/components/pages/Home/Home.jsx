@@ -34,7 +34,7 @@ export default function Home() {
         </Link>
       )}
         
-      <img className='cultureQuizz' src="/Photos/culturequizz.jpg" alt="" />
+      <img className='cultureQuizz' src="/Photos/culturequizz.png" alt="" />
 
       <Link to="./categorie" className="boutonQuizz">
         Quizz
