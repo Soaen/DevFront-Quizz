@@ -15,6 +15,8 @@ const customStyles = {
   },
 };
 
+const apiURL = 'http://127.0.0.1:8000/api/parties'
+
 function Profil() {
   const [modalOpen, setModalOpen] = useState(false);
   const [datas, setDatas] = useState([]);
