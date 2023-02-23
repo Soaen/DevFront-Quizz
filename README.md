@@ -94,10 +94,11 @@ Afin de préparer ses élèves au passage de leur diplôme, l'école a décidé 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Accueil
-- [ ] Catégories
-- [ ] Question
-- [ ] Utilisateurs
+- [X] Accueil
+- [X] Catégories
+- [X] Question
+- [X] Utilisateurs
+- [X] Profil
 
 <p align="right">(<a href="#readme-top">Retourner en haut</a>)</p>
 
